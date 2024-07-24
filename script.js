@@ -63,10 +63,11 @@ function goBack() {
 
 
 function showDiscount() {
-    const discountCodes = ['If you book today free consulation call'];
+    const discountCodes = ['If you book today free consultation call'];
     const randomCode = discountCodes[Math.floor(Math.random() * discountCodes.length)];
     document.getElementById('discount-code').textContent = randomCode;
     document.getElementById('discount-section').style.display = 'block';
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString();
 }
 
 function updateChatValue(value) {
