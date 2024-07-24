@@ -63,7 +63,7 @@ function goBack() {
 
 
 function showDiscount() {
-    const discountCodes = ['DISCOUNT10'];
+    const discountCodes = ['If you book today free consulation call'];
     const randomCode = discountCodes[Math.floor(Math.random() * discountCodes.length)];
     document.getElementById('discount-code').textContent = randomCode;
     document.getElementById('discount-section').style.display = 'block';
@@ -262,7 +262,7 @@ function calculateCost() {
             <div id="consultationButtons" class="text-center mt-4">
             <a href="https://tidycal.com/hammadshahzad/free-30-min" class="btn btn-success">Book 30-Minute Call for $25 USD</a>
             <a href="https://tidycal.com/hammadshahzad/1-hour-consultation" class="btn btn-primary ml-3">Book 1-Hour Call for $50 USD</a>
-        </div>
+        </div>  
         `;
     } else {
         // Handle other services
