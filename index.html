@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Cost Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row">
+            <!-- Left Panel -->
+            <div class="col-md-6 left-panel">
+                <h1 class="text-center">Cost Calculator</h1>
+                <div class="step active" id="step1">
+                    <label for="serviceType">Choose Service:</label>
+                    <div class="service-icons d-flex justify-content-around flex-wrap">
+                        <div class="service-icon text-center" onclick="selectService('websiteBot')">
+                            <img src="Images/chat.svg" alt="Website Bot">
+                            <p>Website Bot</p>
+                        </div>
+                        <div class="service-icon text-center" onclick="selectService('whatsapp')">
+                            <img src="Images/Whatsapp.svg" alt="WhatsApp">
+                            <p>WhatsApp</p>
+                        </div>
+                        <div class="service-icon text-center" onclick="selectService('instagram')">
+                            <img src="Images/instagram.svg" alt="Instagram">
+                            <p>Instagram</p>
+                        </div>
+                        <div class="service-icon text-center" onclick="selectService('facebook')">
+                            <img src="Images/messenger.svg" alt="Facebook">
+                            <p>Facebook</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="step" id="step2">
+                    <label for="userChatsSlider">Number of User Chats:</label>
+                    <input type="range" id="userChatsSlider" class="form-control" value="30" min="10" max="200" step="1" oninput="updateChatValue(this.value)">
+                    <input type="number" id="userChatsInput" class="form-control" value="30" oninput="updateChatSlider(this.value)">
+                    <p id="chatValue">30</p>
+
+                    <div id="countrySelector" style="display: none;">
+                        <label for="countrySelect" class="mt-3">Select Country:</label>
+                        <select id="countrySelect" class="form-control" onchange="formChanged()">
+                            <option value="Argentina">Argentina</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="Chile">Chile</option>
+                            <option value="Colombia">Colombia</option>
+                            <option value="Egypt">Egypt</option>
+                            <option value="France">France</option>
+                            <option value="Germany">Germany</option>
+                            <option value="India">India</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Israel">Israel</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="Mexico">Mexico</option>
+                            <option value="Netherlands">Netherlands</option>
+                            <option value="Nigeria">Nigeria</option>
+                            <option value="Pakistan">Pakistan</option>
+                            <option value="Peru">Peru</option>
+                            <option value="Russia">Russia</option>
+                            <option value="Saudi Arabia">Saudi Arabia</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="Spain">Spain</option>
+                            <option value="Turkey">Turkey</option>
+                            <option value="United Arab Emirates">United Arab Emirates</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="North America">North America</option>
+                            <option value="Rest of Africa">Rest of Africa</option>
+                            <option value="Rest of Asia Pacific">Rest of Asia Pacific</option>
+                            <option value="Rest of Central & Eastern Europe">Rest of Central & Eastern Europe</option>
+                            <option value="Rest of Latin America">Rest of Latin America</option>
+                            <option value="Rest of Middle East">Rest of Middle East</option>
+                            <option value="Rest of Western Europe">Rest of Western Europe</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <label for="automationOption" class="mt-3">Choose Automation Option:</label>
+                    <select id="automationOption" class="form-control" onchange="formChanged()">
+                        <option value="none">None</option>
+                        <option value="googleSheet">Google Sheet</option>
+                        <option value="crm">CRM</option>
+                    </select>
+
+                    <button class="btn btn-primary btn-block mt-3" onclick="calculateCost()">Calculate</button>
+                    <button class="btn btn-secondary btn-block mt-2" onclick="goBack()">Back</button>
+                </div>
+                <div id="resultContainer" style="display: none;">
+                    <div class="result mt-4" id="result"></div>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="col-md-6 right-panel">
+                <h2 class="text-center mb-4">Tools & Services</h2>
+                
+                <!-- Website Builders Section -->
+                <div class="section">
+                    <h3>Website Builders</h3>
+                    <div class="tools-grid row">
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('wordpressInfo')">
+                            <img src="Images/wordpress-logo.svg" alt="WordPress Logo">
+                            <p>WordPress</p>
+                        </div>
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('shopifyInfo')">
+                            <img src="Images/shopify.svg" alt="Shopify Logo">
+                            <p>Shopify</p>
+                        </div>
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('wixInfo')">
+                            <img src="Images/wix.svg" alt="Wix Logo">
+                            <p>Wix</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CRM Automation Section -->
+                <div class="section">
+                    <h3>CRM Automation</h3>
+                    <div class="tools-grid row">
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('airtableInfo')">
+                            <img src="Images/airtable.svg" alt="Airtable Logo">
+                            <p>Airtable</p>
+                        </div>
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('hubspotInfo')">
+                            <img src="Images/hubspot.svg" alt="HubSpot Logo">
+                            <p>HubSpot CRM</p>
+                        </div>
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('salesforceInfo')">
+                            <img src="Images/salesforce.svg" alt="Salesforce Logo">
+                            <p>Salesforce</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Funnel Builders Section -->
+                <div class="section">
+                    <h3>Funnel Builders</h3>
+                    <div class="tools-grid row">
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('kartraInfo')">
+                            <img src="Images/Kartra.jpeg" alt="Kartra Logo">
+                            <p>Kartra</p>
+                        </div>
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('gohighlevelInfo')">
+                            <img src="Images/ghl.png" alt="GoHighLevel Logo">
+                            <p>GoHighLevel</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integration Tools Section -->
+                <div class="section">
+                    <h3>Integration Tools</h3>
+                    <div class="tools-grid row">
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('zapierInfo')">
+                            <img src="Images/Zapier.png" alt="Zapier Logo">
+                            <p>Zapier</p>
+                        </div>
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('makeInfo')">
+                            <img src="Images/Make-app-icon.png" alt="Make.com Logo">
+                            <p>Make.com</p>
+                        </div>
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('pabblyInfo')">
+                            <img src="Images/pabbly.avif" alt="Pabbly Connect Logo">
+                            <p>Pabbly Connect</p>
+                        </div>
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('googleSheetsInfo')">
+                            <img src="Images/sheets.svg" alt="Google Sheets Logo">
+                            <p>Google Sheets</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Tools Section -->
+                <div class="section">
+                    <h3>AI Tools</h3>
+                    <div class="tools-grid row">
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('stackAIInfo')">
+                            <img src="Images/stackai.png" alt="Stack AI Logo">
+                            <p>Stack AI</p>
+                        </div>
+                        <div class="col-6 col-md-4 tool" data-toggle="modal" data-target="#toolInfoModal" onclick="showToolInfo('voiceflowInfo')">
+                            <img src="Images/Voiceflow.png" alt="Voiceflow Logo">
+                            <p>Voiceflow</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-info mt-4" onclick="showDiscount()">Get 10% Discount</button>
+                <div class="discount text-center mt-4" id="discount-section">
+                    <h3>Get 10% Discount On 1st Consulation Call</h3>
+                    <p>Use code: <strong id="discount-code"></strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tool Info Modal -->
+    <div class="modal fade" id="toolInfoModal" tabindex="-1" aria-labelledby="toolInfoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="toolInfoModalLabel">Tool Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="toolInfoModalBody">
+                    <!-- Dynamic content goes here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="hire-widget" onclick="window.open('https://www.fiverr.com/s/VYzoq0l', '_blank')">
+        <img src="Images/profilepic.jpg" alt="Hammad Shahzad" class="hire-image">
+        <span class="hire-text">Hire Now</span>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
