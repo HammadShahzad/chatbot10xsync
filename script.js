@@ -262,7 +262,7 @@ function calculateCost() {
                 Note: Development cost can vary between $${developmentCostMin} and $${developmentCostMax} depending on the requirements.
             </div>
             <div id="consultationButtons" class="text-center mt-4">
-                <a href="https://tidycal.com/hammadshahzad/free-30-min" target="_blank" class="btn btn-success">Book 30-Minute Call for $25 USD</a>
+                <a href="https://tidycal.com/hammadshahzad/free-30-min" target="_blank" class="btn btn-success">Book 30-Minute Call for Free</a>
                 <a href="https://tidycal.com/hammadshahzad/1-hour-consultation" target="_blank" class="btn btn-primary ml-3">Book 1-Hour Call for $50 USD</a>
             </div>
         `;
@@ -327,7 +327,7 @@ function calculateCost() {
             Note: Development cost can vary between $${developmentCostMin} and $${developmentCostMax} depending on the requirements.
         </div>
         <div id="consultationButtons" class="text-center mt-4">
-            <a href="https://tidycal.com/hammadshahzad/free-30-min" target="_blank" class="btn btn-success">Book 30-Minute Call for $25 USD</a>
+            <a href="https://tidycal.com/hammadshahzad/free-30-min" target="_blank" class="btn btn-success">Book 30-Minute Call for Free</a>
             <a href="https://tidycal.com/hammadshahzad/1-hour-consultation" target="_blank" class="btn btn-primary ml-3">Book 1-Hour Call for $50 USD</a>
         </div>
     `;
