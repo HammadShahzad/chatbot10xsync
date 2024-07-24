@@ -63,12 +63,12 @@ function goBack() {
 
 
 function showDiscount() {
-    const discountCodes = ['If you book today free consultation call'];
-    const randomCode = discountCodes[Math.floor(Math.random() * discountCodes.length)];
-    document.getElementById('discount-code').textContent = randomCode;
+    const offerMessage = 'Book your free 1-hour consultation call today to discuss how we can help your business with our advanced automation and AI solutions.';
+    document.getElementById('discount-offer').textContent = offerMessage;
     document.getElementById('discount-section').style.display = 'block';
     document.getElementById('current-date').textContent = new Date().toLocaleDateString();
 }
+
 
 function updateChatValue(value) {
     document.getElementById('chatValue').textContent = value;
