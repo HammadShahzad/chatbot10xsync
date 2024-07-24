@@ -105,6 +105,7 @@ function calculateCost() {
     const freeCredits = 5; // $5/month free credits
     const developmentCostMin = 150;
     const developmentCostMax = 700;
+   
     if (automationOption === 'crm') {
         developmentCost = 400; // Adjust for CRM integration
     }
@@ -261,12 +262,12 @@ function calculateCost() {
                 Note: Development cost can vary between $${developmentCostMin} and $${developmentCostMax} depending on the requirements.
             </div>
             <div id="consultationButtons" class="text-center mt-4">
-            <a href="https://tidycal.com/hammadshahzad/free-30-min" target="_blank" class="btn btn-success">Book 30-Minute Call for $25 USD</a>
-            <a href="https://tidycal.com/hammadshahzad/1-hour-consultation" target="_blank" class="btn btn-primary ml-3">Book 1-Hour Call for $50 USD</a>
-        </div>  
+                <a href="https://tidycal.com/hammadshahzad/free-30-min" target="_blank" class="btn btn-success">Book 30-Minute Call for $25 USD</a>
+                <a href="https://tidycal.com/hammadshahzad/1-hour-consultation" target="_blank" class="btn btn-primary ml-3">Book 1-Hour Call for $50 USD</a>
+            </div>
         `;
     } else {
-        // Handle other services
+        // Handle other services without the "Exceeding Free Limit" section
         detailedCostWithFreeLimit = `
             <tr>
                 <td>Total Tokens</td>
@@ -318,31 +319,6 @@ function calculateCost() {
                         <td>Total Monthly Cost (After Initial)</td>
                         <td>$${monthlyCostWithoutAI.toFixed(2)}</td>
                         <td>$${monthlyCostWithAI.toFixed(2)}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <h3>Exceeding Free Limit</h3>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Cost Component</th>
-                        <th>Estimated Cost (Without AI)</th>
-                        <th>Estimated Cost (With AI)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${detailedCostWithoutFreeLimit}
-                    <tr>
-                        <td>Total Initial Cost</td>
-                        <td>$${whatsappInitialCostWithoutAIWithoutFreeLimit.toFixed(2)}</td>
-                        <td>$${whatsappInitialCostWithAIWithoutFreeLimit.toFixed(2)}</td>
-                    </tr>
-                    <tr>
-                        <td>Total Monthly Cost (After Initial)</td>
-                        <td>$${whatsappMonthlyCostWithoutAIWithoutFreeLimit.toFixed(2)}</td>
-                        <td>$${whatsappMonthlyCostWithAIWithoutFreeLimit.toFixed(2)}</td>
                     </tr>
                 </tbody>
             </table>
